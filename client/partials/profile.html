@@ -1,0 +1,147 @@
+
+
+
+<div ng-controller="profileController">
+
+<div class="container">
+  <h1>Profile</h1>
+  
+  
+     <!-- Reset Password Button -->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#resetPassModal">
+    Reset Password
+</button>
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#changeMacsModal">
+   Change Goal Macros
+</button>
+
+
+
+  <br></br>
+  <ul>
+    <strong>Username</strong>: {{vm.user.name}}
+    <strong>Age</strong>: {{vm.user.userAge}}
+    <strong>Weight</strong>: {{vm.user.userWeight}} lbs.
+    <strong>Protein</strong>: {{vm.user.goalProtein}} grams.
+    <strong>Carb</strong>: {{vm.user.goalCarb}} grams.
+    <strong>Fat</strong>: {{vm.user.goalFat}} grams.
+  </ul>
+<div>
+
+  
+<!-------Reset Password Modal------>
+<div class="modal fade" id="resetPassModal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Reset Password
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+    <div class="col-lg-3 col-lg-offset-5 centered">
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Reset your password</h2>
+        <div class="row small_spacer"></div>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" ng-model="formData.password" id="inputPassword" class="form-control" placeholder="New Password" required>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <div class="row small_spacer"></div>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" ng-model="formData.password2" id="inputPassword2" class="form-control" placeholder="Re-enter new Password" required>
+        <div class="row small_spacer"></div>
+
+
+
+        <div class="row small_spacer"></div>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <button class="btn btn-default btn-primary btn-block" data-dismiss="modal" type="submit" ng-click="reset()">Reset</button>
+      </form>
+      
+</div>
+                
+                
+                
+                
+            </div>
+            
+            
+          
+        </div>
+    </div>
+</div>
+
+<!--------- Change macros modal -------->
+<div class="modal fade" id="changeMacsModal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Reset Password
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+    <div class="col-lg-3 col-lg-offset-5 centered">
+      <form class="form-horizontal" role="form">
+                  <div class="form-group">
+          <div class="col-sm-8 col-sm-offset-2 text-center">
+  <div class="form-group">
+    <input type="number" class="form-control input-sm text-center"  placeholder="Protein" ng-model="formMac.goalProtein">
+  </div>
+    <div class="form-group">
+   <input type="number" class="form-control input-sm text-center"  placeholder="Carb" ng-model="formMac.goalCarb">
+  </div>
+<div class="form-group">
+   <input type="number" class="form-control input-sm text-center"  placeholder="Fat" ng-model="formMac.goalFat">
+  </div>
+
+  <div class="form-group">
+  <button type="button" class="btn btn-primary btn-sm"
+                        data-dismiss="modal">
+                            Close
+                </button>
+<button type="submit" class="btn btn-primary btn-sm" data-dismiss="modal" ng-click="changeMacs()">Change</button>
+  </div>
+  
+          </div>           
+           </div>
+           
+         
+        
+                </form>
+      
+</div>
+                
+                
+                
+                
+            </div>
+            
+            
+          
+        </div>
+    </div>
+</div>
+
+</div>
+

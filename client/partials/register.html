@@ -1,0 +1,37 @@
+<div class="col-md-4">
+  <h1>Register</h1>
+  <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+  <form class="form" ng-submit="register()">
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" name="username" ng-model="registerForm.username" required>
+    </div>
+     <div class="form-group">
+      <label>Age</label>
+      <input type="number" class="form-control" name="age" ng-model="registerForm.age" required>
+    </div>
+    <div class="form-group">
+      <label>Weight (lbs.)</label>
+      <input type="number" class="form-control" name="weight" ng-model="registerForm.weight" required>
+    </div>
+    <div class="form-group">
+      <label>Protein (grams)</label>
+      <input type="number" class="form-control" name="goalProtein" ng-model="registerForm.goalProtein" required>
+    </div>
+    <div class="form-group">
+      <label>Carb (grams)</label>
+      <input type="number" class="form-control" name="goalCarb" ng-model="registerForm.goalCarb" required>
+    </div>
+    <div class="form-group">
+      <label>Fat (grams)</label>
+      <input type="number" class="form-control" name="goalFat" ng-model="registerForm.goalFat" required>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+        <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default" ng-disabled="disabled">Register</button>
+      </div>
+  </form>
+</div>

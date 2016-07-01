@@ -1,0 +1,375 @@
+
+<!-------->
+
+
+
+
+
+
+
+<!------->
+<div ng-controller="calorieController">
+
+<!-- View Goals Modal -->
+<div class="modal fade" id="myModalGoalMacros" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Current Macros
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <div ng-controller="profileController">
+
+ 
+  
+       <table class="table table-striped" style="font-size:16px">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Protein</th>
+            <th>Carb</th>
+            <th>Fat</th>
+            <th>Total Calories</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Goal</td>
+            <td>{{vm.user.goalProtein}} grams</td>
+            <td>{{vm.user.goalCarb}} grams</td>
+            <td>{{vm.user.goalFat}} grams</td>
+            <td>{{vm.user.goalProtein*4 + vm.user.goalCarb*4 + vm.user.goalFat*9}}</td>
+          </tr>
+          <tr>
+            <td>Actual</td>
+            <td>{{getProteinTotal()}} grams</td>
+            <td>{{getCarbTotal()}} grams</td>
+            <td>{{getFatTotal()}} grams</td>
+            <td>{{getProteinTotal()*4 + getCarbTotal()*4 + getFatTotal()*9}}</td>
+            <td></td>
+          </tr>
+          <tr style="color:red;">
+            <td>Remaining</td>
+            <td>{{vm.user.goalProtein - getProteinTotal()}} grams</td>
+            <td>{{vm.user.goalCarb - getCarbTotal()}} grams</td>
+            <td>{{vm.user.goalFat - getFatTotal()}} grams</td>
+            <td>{{((vm.user.goalProtein - getProteinTotal())*4) + ((vm.user.goalCarb - getCarbTotal())*4) + ((vm.user.goalFat - getFatTotal())*9)}}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+</div>
+                
+                
+                
+                
+                
+                
+            </div>
+            
+            
+          
+        </div>
+    </div>
+</div>
+  
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Add an item
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+          <div class="col-sm-8 col-sm-offset-2 text-center">
+  <div class="form-group">
+    <input type="text" class="form-control input-sm text-center"  placeholder="Calorie Counter Name" ng-model="formData.title">
+  </div>
+  <div class="form-group">
+    <input type="number" class="form-control input-sm text-center"  placeholder="Protein" ng-model="formData.protein">
+  </div>
+    <div class="form-group">
+   <input type="number" class="form-control input-sm text-center"  placeholder="Carb" ng-model="formData.carb">
+  </div>
+<div class="form-group">
+   <input type="number" class="form-control input-sm text-center"  placeholder="Fat" ng-model="formData.fat">
+  </div>
+
+  <div class="form-group">
+  <button type="button" class="btn btn-primary btn-sm"
+                        data-dismiss="modal">
+                            Close
+                </button>
+<button type="submit" class="btn btn-primary btn-sm" ng-click="createCalorieCalc()">Add</button>
+  </div>
+  
+          </div>           
+           </div>
+           
+         
+        
+                </form>
+                
+                
+                
+                
+                
+                
+            </div>
+            
+            
+          
+        </div>
+    </div>
+</div>
+  
+
+
+<!-- Modal Food List -->
+<div class="modal fade" id="myModalViewToday" tabindex="-1" role="dialog" 
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" 
+                   data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Past Food Consumptions
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form>
+        
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+        <input type="text" class="form-control" placeholder="Search Food" ng-model="searchFood">
+
+      </div>      
+    </div>
+  </form>
+                <table class="table table-bordered table-striped">
+        
+        
+        <thead>
+            <tr>
+                <td>
+                   <a ng-click="sortType = 'title'; sortReverse =!sortReverse">
+                    name
+                    <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span>
+          
+
+                    </a>
+                </td>
+                <td>
+                    <a  ng-click="sortType = 'protein'; sortReverse =!sortReverse">
+                    Protein
+                    <span ng-show="sortType == 'protein' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'protein' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a  ng-click="sortType = 'carb'; sortReverse =!sortReverse">
+                    Carb
+                    <span ng-show="sortType == 'carb' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'carb' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a ng-click="sortType = 'fat'; sortReverse =!sortReverse">
+                    Fat
+                    <span ng-show="sortType == 'fat' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'fat' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a  ng-click="sortType = 'total'; sortReverse =!sortReverse">
+                    Total
+                    <span ng-show="sortType == 'total' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'total' && sortReverse" class="fa fa-caret-up"></span>                    </a>
+                </td>
+                <td>
+                    <a  ng-click="sortType = 'date'; sortReverse =!sortReverse">
+                    Date Added
+                    <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    
+                    Edit
+                </td>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr ng-repeat="cal in cals | orderBy:sortType:sortReverse | filter:searchFood" >
+                <td>{{cal.title}}</td>
+                <td>{{cal.protein}}</td>
+                <td>{{cal.carb}}</td>
+                <td>{{cal.fat}}</td>
+                <td>{{cal.total}}</td>
+                <td>{{cal.dateMade | date:"MM/dd/yyyy 'at' h:mma"}}</td>  
+                <td>Delete <input type="checkbox" ng-click="deleteCalorieCalc(cal._id)"></td>    
+            </tr>
+        </tbody>
+        
+    </table> 
+                
+                
+                
+                
+                
+                
+            </div>
+            
+            
+          
+        </div>
+    </div>
+</div>
+
+
+  
+
+  
+<div class="container" >
+ 
+ <h1>Tracker</h1>
+ 
+
+    <!-- Add Foods Button -->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModalHorizontal">
+    Add Foods to List
+</button>
+
+    <!-- View Past Foods Button -->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModalViewToday">
+    View Past Foods List
+</button>
+
+    <!-- View Goal Macros Button -->
+<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModalGoalMacros">
+    View Macro Goals
+</button>
+  
+<br></br>   
+   
+    
+</div>  
+
+
+
+<div class="container">
+ 
+  <h4>Today's Macros</h4>
+
+  <table class="table table-bordered table-striped">
+        
+        
+        <thead>
+            <tr>
+                <td>
+                   
+                    Name
+                    
+                </td>
+                <td>
+                    
+                    Protein
+                    
+                </td>
+                <td>
+                
+                    Carb
+                    
+                </td>
+                <td>
+                    
+                    Fat
+                    
+                </td>
+                <td>
+                    
+                    Total
+                       
+                </td>
+                <td>
+              
+                    Date Added
+                    
+                   
+                </td>
+            
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr ng-repeat="dateCal in dateCals" >
+                <td>{{dateCal.title}}</td>
+                <td>{{dateCal.protein}}</td>
+                <td>{{dateCal.carb}}</td>
+                <td>{{dateCal.fat}}</td>
+                <td>{{dateCal.total}}</td>
+                <td>{{dateCal.dateMade | date:"MM/dd/yyyy 'at' h:mma"}}</td>  
+
+            </tr>
+        </tbody>
+        
+    </table>
+    
+</div>
+
+
+</div> 
+  
+
+
+
+
+
+
+
+
+
+
