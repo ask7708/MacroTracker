@@ -1,4 +1,4 @@
-<h1>MacroTracker<h1>
+MacroTracker
 
 A macro nutrient tracker site built for users to track daily macronutrients, set goals for daily calorie goals, and track past and present food consumptions.
 
