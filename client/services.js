@@ -17,7 +17,7 @@ angular.module('myApp').factory('AuthService',
       getTheUser : getTheUser,
       getTracker : getTracker,
       isLoggedIn : isLoggedIn,
-      getCurrentDateTracker, getCurrentDateTracker
+      getCurrentDateTracker: getCurrentDateTracker
     });
     
 function isLoggedIn() {

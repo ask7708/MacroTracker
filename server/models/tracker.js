@@ -14,5 +14,5 @@ var macroTracker = new Schema({
 });
 
 
-var macroTracker = mongoose.model('MacTrac', macroTracker)
+var macroTracker = mongoose.model('MacTrac', macroTracker);
 module.exports = mongoose.model('MacTrac', macroTracker);

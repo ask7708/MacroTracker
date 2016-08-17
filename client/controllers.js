@@ -261,7 +261,7 @@ angular.module('myApp').controller('logoutController',
           //console.log("Logout Cookie: "+$cookieStore.get('loggedIn'));
           //$cookieStore.put('loggedIn', false);
           //$cookieStore.remove('loggedIn');
-          $rootScope.loggedIn = false;
+          //$rootScope.loggedIn = false;
           
         });
 
