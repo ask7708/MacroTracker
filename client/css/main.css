@@ -1,0 +1,15 @@
+.table>tbody>tr>td {
+    vertical-align: middle;
+    display: table-cell; 
+}
+
+ul.profileinfo{
+    
+    padding:0; 
+    list-style-type: none;
+
+}
+ul.profileinfo>li{
+        margin:10px 0;
+        font-size: 18px;
+}
